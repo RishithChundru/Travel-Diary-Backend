@@ -26,7 +26,7 @@ const app = express()
 // Enable CORS for frontend (Replace with your frontend URL)
 app.use(
   cors({
-    origin: "http://localhost:5173", //frontend URL
+    origin: process.env.FRONTEND_URL, //frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow CRUD operations
     credentials: true, // Allow cookies & authorization headers
   })
@@ -37,8 +37,10 @@ app.use(cookieParser())
 // for allowing json object in req body
 app.use(express.json())
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000!")
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 })
 
 app.use("/api/auth", authRoutes)
