@@ -32,6 +32,33 @@ app.use(
   })
 )
 
+// 
+// const allowedOrigins = [
+//   "http://localhost:3000",
+//   "https://chat-bot-auth-mern-fe.vercel.app",
+//   /\.vercel\.app$/ // For dynamic Vercel preview URLs
+// ];
+
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin) return callback(null, true); // Allow Postman or curl
+//     if (
+//       allowedOrigins.some(o =>
+//         typeof o === "string" ? o === origin : o instanceof RegExp && o.test(origin)
+//       )
+//     ) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true, // if you’re sending cookies or auth headers
+// };
+
+// // ✅ Register CORS middleware
+// app.use(cors(corsOptions));
+
+// 
 app.use(cookieParser())
 
 // for allowing json object in req body
