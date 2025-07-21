@@ -24,6 +24,7 @@ mongoose
 const app = express()
 
 // Enable CORS for frontend (Replace with your frontend URL)
+
 app.use(
   cors({
     origin: process.env.FRONTEND_URL, //frontend URL
