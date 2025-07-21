@@ -58,7 +58,7 @@ export const imageUpload = async (req, res, next) => {
       return next(errorHandler(400, "No image uploaded"))
     }
 
-    const imageUrl = `https://travel-diary-backend-8dz4.onrender.com/uploads/${req.file.filename}`
+    const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`
 
     res.status(201).json({ imageUrl })
   } catch (error) {
