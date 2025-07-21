@@ -25,13 +25,47 @@ const app = express()
 
 // Enable CORS for frontend (Replace with your frontend URL)
 
+// app.use(
+//   cors({
+//     origin: [process.env.FRONTEND_URL,
+//       'http://localhost:5173/'
+//     ], //frontend URL
+//     methods: ["GET", "POST", "PUT", "DELETE"], // Allow CRUD operations
+//     credentials: true, // Allow cookies & authorization headers
+//   })
+// )
+
+
+// app.use(
+//   cors({
+//     origin: true, // Reflect request origin
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//   })
+// )
+
+
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://travel-diary-gilt.vercel.app',
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, //frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow CRUD operations
-    credentials: true, // Allow cookies & authorization headers
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
-)
+);
 
 
 app.use(cookieParser())
